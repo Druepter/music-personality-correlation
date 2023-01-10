@@ -1090,14 +1090,17 @@ function App() {
 
 
 
-  const [goldMSIScore, setGoldMSIScore] = useState(new Map())
+  const [goldMSIScore, setGoldMSIScore] = useState()
   const [bigFiveUserData, setBigFiveUserData] = useState(new Map())
   const [bigFiveArtistOne, setBigFiveArtistOne] = useState(new Map())
   const [bigFiveArtistTwo, setBigFiveArtistTwo] = useState(new Map())
   const [bigFiveArtistThree, setBigFiveArtistThree] = useState(new Map())
   const [personalData, setPersonalData] = useState(new Map())
   const [artistNameOne, setArtistNameOne] = useState()
-
+  const [artistNameTwo, setArtistNameTwo] = useState()
+  const [artistNameThree, setArtistNameThree] = useState()
+  
+  const [surveyDone, setSurveyDone] = useState(false);
 
 
   const saveUserDataInDatabase = () => {
@@ -1126,24 +1129,23 @@ function App() {
   }
 
   useEffect(() => {
+    //Prüfen ob alle Fragen der Umfrage beantwortet sind
+    if(surveyDone == true){
+      console.log(personalData)
+      console.log(goldMSIScore)
+      console.log(bigFiveUserData)
+      console.log(artistNameOne)
+      console.log(bigFiveArtistOne)
+      console.log(artistNameTwo)
+      console.log(bigFiveArtistTwo)
+      console.log(artistNameThree)
+      console.log(bigFiveArtistThree)
+      
 
-    console.log(bigFiveUserData)
+    }
+  }, [surveyDone])
 
-    //React führt die Hook Use Effect einmal bei Initialisierung aus und einmal bei änderung
-    //Da hier nicht schon bei Initialisierung Daten ans Backend gesendet werden sollen
-    //Muss hier eine seperate Prüfung erfolgen
-    //Wenn Map genau 5 Elemente hat dann ist okay
-    /*if(bigFiveUserData.size == 5){
-      saveUserDataInDatabase()
-    }*/
-    
-  }, [bigFiveUserData])
 
-  useEffect(() => {
-
-    console.log(personalData);
-
-  }, [personalData])
 
   return (
     <>
@@ -1187,13 +1189,13 @@ function App() {
           <Route path="/nameOfArtistOne" element={<NameOfArtist setArtistName={setArtistNameOne} linkToContinue={"/bigFiveArtistOne"} count={1}></NameOfArtist>}></Route>
           <Route path="/bigFiveArtistOne" element={<StatementContainer setBigFiveData={setBigFiveArtistOne} linkToContinue={"/nameOfArtistTwo"}></StatementContainer>}></Route>
           
-          <Route path="/nameOfArtistTwo" element={<NameOfArtist setArtistName={setArtistNameOne} linkToContinue={"/bigFiveArtistTwo"} count={2}></NameOfArtist>}></Route>
+          <Route path="/nameOfArtistTwo" element={<NameOfArtist setArtistName={setArtistNameTwo} linkToContinue={"/bigFiveArtistTwo"} count={2}></NameOfArtist>}></Route>
           <Route path="/bigFiveArtistTwo" element={<StatementContainer setBigFiveData={setBigFiveArtistTwo} linkToContinue={"/nameOfArtistThree"}></StatementContainer>}></Route>
 
-          <Route path="/nameOfArtistThree" element={<NameOfArtist setArtistName={setArtistNameOne} linkToContinue={"/bigFiveArtistThree"} count={3}></NameOfArtist>}></Route>
-          <Route path="/bigFiveArtistThree" element={<StatementContainer setBigFiveData={setBigFiveArtistTwo} linkToContinue={"/outro"}></StatementContainer>}></Route>
+          <Route path="/nameOfArtistThree" element={<NameOfArtist setArtistName={setArtistNameThree} linkToContinue={"/bigFiveArtistThree"} count={3}></NameOfArtist>}></Route>
+          <Route path="/bigFiveArtistThree" element={<StatementContainer setBigFiveData={setBigFiveArtistThree} linkToContinue={"/outro"}></StatementContainer>}></Route>
           
-          <Route path="/outro" element={<Outro></Outro>}></Route>
+          <Route path="/outro" element={<Outro setSurveyDone={setSurveyDone}></Outro>}></Route>
           
           <Route path="/bigFive" element={<BigFive getFavoriteTracksAudioFeaturesShortTerm={getFavoriteTracksAudioFeaturesShortTerm} getFavoriteTracksAudioFeaturesMediumTerm={getFavoriteTracksAudioFeaturesMediumTerm} getFavoriteTracksAudioFeaturesLongTerm={getFavoriteTracksAudioFeaturesLongTerm} getCurrentUsersProfile={getCurrentUsersProfile} currentUsersProfile={currentUsersProfile} token={token} readyToRender={readyToRender} chartColors={chartColors} chartData={chartData} chartLabels={chartLabels} trackCategories={trackCategories} renderState={setRenderState} valenceState={valence}/>}></Route>   
         </Routes> 

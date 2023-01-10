@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 
 
-export default function StatementContainerGoldMSI({setGoldMSIData, linkToContinue}){
+export default function StatementContainerGoldMSI({setGoldMSIScore, linkToContinue}){
 
     //Map, welche alle Statements in Textform und als Nummer beinhaltet
     const statementMap = new Map();
@@ -66,7 +66,7 @@ export default function StatementContainerGoldMSI({setGoldMSIData, linkToContinu
       console.log(GoldMSIScore)
      
 
-    
+      setGoldMSIScore(GoldMSIScore)
 
       const bigFiveMap = new Map()
 

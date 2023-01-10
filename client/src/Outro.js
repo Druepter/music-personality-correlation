@@ -14,8 +14,12 @@ import Box from "@mui/material/Box";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-export default function Outro(){
+export default function Outro({setSurveyDone}){
     
+  useEffect(() => {
+    setSurveyDone(true)
+    console.log("surveyDone geändert")
+  }, [])
 
     return (
         <>

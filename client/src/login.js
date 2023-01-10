@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import spotifyImage from './assets/spotify_zugeschnitten.jpg'
+import headerImage from './assets/live_zugeschnitten.png'
 import Box from "@mui/material/Box";
 
 //Mit dieser Funktion wird die Login Seite erstellt
@@ -19,8 +19,8 @@ export default function Login({_AUTH_ENDPOINT, _CLIENT_ID, _REDIRECT_URI, _RESPO
         <ImageList cols={1} sx={{marginLeft: "0px", marginRight: "0px", marginTop: "-10px"}}>
             <ImageListItem>
                 <img
-                    src={`${spotifyImage}?w=500&fit=crop&auto=format`}
-                    srcSet={`${spotifyImage}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                    src={`${headerImage}?w=500&fit=crop&auto=format`}
+                    srcSet={`${headerImage}?w=248&fit=crop&auto=format&dpr=2 2x`}
                     alt={'spotify'}
                     loading="loading"
                     sx={{marginLeft: "-30px"}}
@@ -33,21 +33,21 @@ export default function Login({_AUTH_ENDPOINT, _CLIENT_ID, _REDIRECT_URI, _RESPO
       <Container sx={{minHeight: "100%"}} style={{backgroundColor: "white", paddingTop: 0, marginTop: '-16px'}} maxWidth="md">
        
         <Typography variant="h3" sx={{mb: 2, pt: 4, fontWeight: 550}}>
-            Spotify Taste Analyzer
+            Music Taste - Personaltity Survey
         </Typography>
         <Typography sx={{mb: 2, mt: 3, fontSize: 15}}>
           <ul>
-          <li>Du hast dich immer schoneimal gefragt was deinen Musikgeschmack am besten beschreibt?<br></br></li>
-          <li>Du willst einen geordneten Überblick über deine Lieblingssongs und deren Eigenschaften?<br></br></li>
-          <li>Du brauchst eine Playlist, bestehend aus deinen Top Tracks, für eine ganz bestimmte Stimmung?<br></br></li>
+          <li>Um an der folgenden Studie teilzunehmen benötigst du einen Spotify-Account<br></br></li>
+          <li>Du loggst dich mit diesem ein. Daten über dein Hörverhalten werden erhoben<br></br></li>
+          <li>Danach beantwortest du einige Fragen<br></br></li>
           </ul>
         </Typography>
         <Typography sx={{mb: 2, mt: 2, fontSize: 18, fontWeight: 550}}>
-          Dann ist der Spotify Taste Analyzer das richtige für dich.
+          Du hast Lust mitzumachen?
         </Typography>
         <Typography sx={{mb: 2, mt: 2, fontSize: 15}}>
           <ul>    
-            <li>Logge dich jetzt mit Spotify ein und lass dir dein individuelles Musikprofil berechnen!</li>
+            <li>Dann logge dich jetzt mit deinem Spotify-Account ein, beantworte die Umfrage und helfe uns somit weiter!</li>
           </ul>
         </Typography>
         <Box
