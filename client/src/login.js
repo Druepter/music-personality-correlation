@@ -33,7 +33,7 @@ export default function Login({_AUTH_ENDPOINT, _CLIENT_ID, _REDIRECT_URI, _RESPO
       <Container sx={{minHeight: "100%"}} style={{backgroundColor: "white", paddingTop: 0, marginTop: '-16px'}} maxWidth="md">
        
         <Typography variant="h3" sx={{mb: 2, pt: 4, fontWeight: 550}}>
-            Music Taste - Personaltity Survey
+            Music Taste - Personality Survey
         </Typography>
         <Typography sx={{mb: 2, mt: 3, fontSize: 15}}>
           <ul>

@@ -40,7 +40,48 @@ app.post("/createEntry", (req, res) => {
     res.send("huhu")
 })
 
-app.post("/insertBigFiveData", (req, res) => {
+
+
+app.post("/insertValenceArousal", (req, res) => {
+
+    const valence = req.body.valence
+    const arousal = req.body.arousal
+
+    const sqlInsert = "INSERT INTO musictaste (valence, arousal) VALUES (?, ?)"
+    db.query(sqlInsert, [valence, arousal], (err, result) => {
+        console.log(err)
+        console.log(result)
+    }) 
+
+
+    console.log("Valenz " + req.body.valence)
+    console.log("Arousal "+ req.body.arousal)
+    res.send("huhu")
+}) 
+
+app.post("/insertPersonalData", (req, res) => {
+
+    const age = req.body.age
+    const gender = req.body.gender
+
+    const sqlInsert = "INSERT INTO personaldata (age, gender) VALUES (?, ?)"
+    db.query(sqlInsert, [age, gender], (err, result) => {
+        console.log(err)
+        console.log(result)
+    })    
+
+    console.log("Personal Data")
+    console.log("Alter " + req.body.age)
+    console.log("Geschlecht "+ req.body.gender)
+    res.send("huhu")
+})  
+
+app.post("/insertGoldMSIScorce", (req, res) => {
+    console.log("Gold MSI Score:" + req.body.goldMSIScore)
+
+}) 
+
+app.post("/insertBigFiveUserData", (req, res) => {
 
     const extraversion = req.body.extraversion
     const neurotizismus = req.body.neurotizismus
@@ -50,8 +91,18 @@ app.post("/insertBigFiveData", (req, res) => {
     const valenz = req.body.valenz
     const arousal = req.body.arousal
 
-    console.log(extraversion)
-    console.log(valenz)
+
+    console.log("Big Five User Data")
+    console.log("Extraversion " + extraversion)
+    console.log("Offenheit " + offenheit)
+    console.log("Neurotiziesmus " + neurotizismus)
+    
+    console.log("Gewissenhaftigkeit " + gewissenhaftigkeit)
+    console.log("Verträglichkeit " + vertraeglichkeit)
+    console.log("valenz " + valenz)
+    console.log("arousal " + arousal)
+
+
 
     const sqlInsert = "INSERT INTO user_data (extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit, valenz, arousal) VALUES (?, ?, ?, ?, ?, ?, ?)"
     db.query(sqlInsert, [extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit, valenz, arousal], (err, result) => {
@@ -62,6 +113,66 @@ app.post("/insertBigFiveData", (req, res) => {
 
 
 })
+
+app.post("/insertBigFiveArtistOneData", (req, res) => {
+    
+    const extraversion = req.body.extraversion
+    const neurotizismus = req.body.neurotizismus
+    const offenheit = req.body.offenheit
+    const gewissenhaftigkeit = req.body.gewissenhaftigkeit
+    const vertraeglichkeit = req.body.vertraeglichkeit
+    const name = req.body.artist
+
+    console.log("Big Artist One Data")
+    console.log("Extraversion " + extraversion)
+    console.log("Neurotiziesmus " + neurotizismus)
+    console.log("Offenheit " + offenheit)
+    console.log("Gewissenhaftigkeit " + gewissenhaftigkeit)
+    console.log("Verträglichkeit " + vertraeglichkeit)
+    console.log("Name "+ name)
+
+}) 
+
+app.post("/insertBigFiveArtistTwoData", (req, res) => {
+    
+    const extraversion = req.body.extraversion
+    const neurotizismus = req.body.neurotizismus
+    const offenheit = req.body.offenheit
+    const gewissenhaftigkeit = req.body.gewissenhaftigkeit
+    const vertraeglichkeit = req.body.vertraeglichkeit
+    const name = req.body.artist
+
+    console.log("Big Artist Two Data")
+    console.log("Extraversion " + extraversion)
+    console.log("Neurotiziesmus " + neurotizismus)
+    console.log("Offenheit " + offenheit)
+    console.log("Gewissenhaftigkeit " + gewissenhaftigkeit)
+    console.log("Verträglichkeit " + vertraeglichkeit)
+    console.log("Name "+ name)
+
+}) 
+
+app.post("/insertBigFiveArtistThreeData", (req, res) => {
+    
+    const extraversion = req.body.extraversion
+    const neurotizismus = req.body.neurotizismus
+    const offenheit = req.body.offenheit
+    const gewissenhaftigkeit = req.body.gewissenhaftigkeit
+    const vertraeglichkeit = req.body.vertraeglichkeit
+    const name = req.body.artist
+
+    console.log("Big Artist Three Data")
+    console.log("Extraversion " + extraversion)
+    console.log("Neurotiziesmus " + neurotizismus)
+    console.log("Offenheit " + offenheit)
+    console.log("Gewissenhaftigkeit " + gewissenhaftigkeit)
+    console.log("Verträglichkeit " + vertraeglichkeit)
+    console.log("Name "+ name)
+
+}) 
+
+
+
 
 app.listen(3001, () => {
     console.log("running")

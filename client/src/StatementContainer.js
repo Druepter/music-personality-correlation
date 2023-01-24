@@ -83,6 +83,10 @@ export default function StatementContainer({setBigFiveData, linkToContinue}){
       bigFiveMap.set('gewissenhaftigkeit', bfi_gewissenhaftigkeit)
       bigFiveMap.set('vertraeglichkeit', bfi_vertraeglichkeit)
 
+      //BFIK
+      //Brand Personality Schwartz
+
+
       console.log(bigFiveMap)
 
       setBigFiveData(bigFiveMap)

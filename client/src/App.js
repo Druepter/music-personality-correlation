@@ -32,6 +32,7 @@ import NameOfArtist from "./NameOfArtist";
 import Outro from "./Outro";
 import GoldMSIntro from "./GoldMSIIntro";
 import StatementContainerGoldMSI from "./StatementContainerGoldMSI";
+import ConscientiousnessArtist from "./ConscientiousnessArtist";
 
 function App() {
  
@@ -1099,38 +1100,164 @@ function App() {
   const [artistNameOne, setArtistNameOne] = useState()
   const [artistNameTwo, setArtistNameTwo] = useState()
   const [artistNameThree, setArtistNameThree] = useState()
+
+
+  //Werte für die BigFive der drei Artists
+  const [conscientiousnessArtistOne, setConscientiousnessArtistOne] = useState()
+  const [conscientiousnessArtistTwo, setConscientiousnessArtistTwo] = useState()
+  const [conscientiousnessArtistThree, setConscientiousnessArtistThree] = useState()
+
   
   const [surveyDone, setSurveyDone] = useState(false);
 
+  const [userID, setUserID] = useState();
 
-  const saveUserDataInDatabase = () => {
+  /*const generateRandomUserID = () => {
+    return Math.floor(Math.random() * (max - min) + min)
+  }*/
 
-     if(bigFiveUserData.size > 0){
-      console.log(bigFiveUserData.get("extraversion")) 
-     } 
+  const getRandomUserID = (min, max) => {
+    return Math.floor(Math.random() * (max - min) + min)
+  }
 
 
-    axios.post("http://localhost:3001/insertBigFiveData", {
-      extraversion: bigFiveUserData.get("extraversion"),
-      neurotizismus: bigFiveUserData.get("neurotizismus"),
-      offenheit: bigFiveUserData.get("offenheit"),
-      gewissenhaftigkeit: bigFiveUserData.get("gewissenhaftigkeit"),
-      vertraeglichkeit: bigFiveUserData.get("vertraeglichkeit"),
-      valenz: getAverageValence(audioFeaturesLongTerm),
-      arousal: getAverageArousal(audioFeaturesLongTerm)
+  //Sendet Perönliche Daten ans Backend
+  const sendPersonalData = () => {
+
+    axios.post("http://localhost:3001/insertPersonalData", {
+      age: personalData.get("age"),
+      gender: personalData.get("gender")
     }).then(function (response){
-      alert("Eintrag wurde hinzugeügt")
+      
     })
     .catch(function (error){
       console.log(error)
     })
 
+  }
+
+  //Sendet GoldMsiScore ans Backend
+  const sendGoldMSIScoreData = () => {
+
+    axios.post("http://localhost:3001/insertGoldMSIScorce", {
+      goldMSIScore: goldMSIScore
+    }).then(function (response){
+      
+    })
+    .catch(function (error){
+      console.log(error)
+    })
 
   }
+
+  const sendValenceAndArousal = () => {
+
+    axios.post("http://localhost:3001/insertValenceArousal", {
+      valence: getAverageValence(audioFeaturesLongTerm),
+      arousal: getAverageArousal(audioFeaturesLongTerm)
+    })
+
+  }
+
+  //Sendet Big Five Daten des Users
+  const sendBigFiveUserData = () => {
+
+   axios.post("http://localhost:3001/insertBigFiveUserData", {
+     extraversion: bigFiveUserData.get("extraversion"),
+     neurotizismus: bigFiveUserData.get("neurotizismus"),
+     offenheit: bigFiveUserData.get("offenheit"),
+     gewissenhaftigkeit: bigFiveUserData.get("gewissenhaftigkeit"),
+     vertraeglichkeit: bigFiveUserData.get("vertraeglichkeit"),
+     valenz: getAverageValence(audioFeaturesLongTerm),
+     arousal: getAverageArousal(audioFeaturesLongTerm)
+   }).then(function (response){
+     
+   })
+   .catch(function (error){
+     console.log(error)
+   })
+
+ }
+
+ //Sendet Big Five des ersten Artist und Namen des Artist
+ const sendBigFiveArtistOneData = () => {
+
+  axios.post("http://localhost:3001/insertBigFiveArtistOneData", {
+    extraversion: bigFiveArtistOne.get("extraversion"),
+    neurotizismus: bigFiveArtistOne.get("neurotizismus"),
+    offenheit: bigFiveArtistOne.get("offenheit"),
+    gewissenhaftigkeit: bigFiveArtistOne.get("gewissenhaftigkeit"),
+    vertraeglichkeit: bigFiveArtistOne.get("vertraeglichkeit"),
+    artist: artistNameOne
+  }).then(function (response){
+    
+  })
+  .catch(function (error){
+    console.log(error)
+  })
+
+}
+
+ //Sendet Big Five des zweiten Artist und Namen des Artist
+ const sendBigFiveArtistTwoData = () => {
+
+  axios.post("http://localhost:3001/insertBigFiveArtistTwoData", {
+    extraversion: bigFiveArtistTwo.get("extraversion"),
+    neurotizismus: bigFiveArtistTwo.get("neurotizismus"),
+    offenheit: bigFiveArtistTwo.get("offenheit"),
+    gewissenhaftigkeit: bigFiveArtistTwo.get("gewissenhaftigkeit"),
+    vertraeglichkeit: bigFiveArtistTwo.get("vertraeglichkeit"),
+    artist: artistNameTwo
+  }).then(function (response){
+    
+  })
+  .catch(function (error){
+    console.log(error)
+  })
+
+}
+
+
+ //Sendet Big Five des dritten Artist und Namen des Artist
+ const sendBigFiveArtistThreeData = () => {
+
+  axios.post("http://localhost:3001/insertBigFiveArtistThreeData", {
+    extraversion: bigFiveArtistThree.get("extraversion"),
+    neurotizismus: bigFiveArtistThree.get("neurotizismus"),
+    offenheit: bigFiveArtistThree.get("offenheit"),
+    gewissenhaftigkeit: bigFiveArtistThree.get("gewissenhaftigkeit"),
+    vertraeglichkeit: bigFiveArtistThree.get("vertraeglichkeit"),
+    artist: artistNameThree
+  }).then(function (response){
+    
+  })
+  .catch(function (error){
+    console.log(error)
+  })
+
+}
+
+
+
 
   useEffect(() => {
     //Prüfen ob alle Fragen der Umfrage beantwortet sind
     if(surveyDone == true){
+      //Wenn ja sende alle Daten ans Backend
+
+      //Keriere dazu zuerst eine random UserID
+      //Sechsstellige Nummer
+      var userID = getRandomUserID(100000, 1000000)
+
+      console.log("UserID: " + userID)
+
+      sendValenceAndArousal()
+      sendPersonalData()
+      sendGoldMSIScoreData()
+      sendBigFiveUserData()
+      sendBigFiveArtistOneData()
+      sendBigFiveArtistTwoData()
+      sendBigFiveArtistThreeData()
       console.log(personalData)
       console.log(goldMSIScore)
       console.log(bigFiveUserData)
@@ -1180,9 +1307,14 @@ function App() {
           <Route path="/goldmsi" element={<StatementContainerGoldMSI setGoldMSIScore={setGoldMSIScore} linkToContinue={"/bigFiveIntro"}></StatementContainerGoldMSI>}></Route>
           
           <Route path="/bigFiveIntro" element={<BigFiveIntro></BigFiveIntro>}></Route>
-          
 
+
+
+          <Route path="/conscientiousnessArtistOne" element={<ConscientiousnessArtist artistNameOne={artistNameOne} artistNameTwo={artistNameTwo} artistNameThree={artistNameThree} _setConscientiousnessArtistOne={setConscientiousnessArtistOne} _setConscientiousnessArtistTwo={setConscientiousnessArtistTwo} _setConscientiousnessArtistThree={setConscientiousnessArtistThree}></ConscientiousnessArtist>}></Route>
       
+
+
+
           <Route path="/bigFiveUser" element={<StatementContainer setBigFiveData={setBigFiveUserData} linkToContinue={"/bigFiveIntroArtist"}></StatementContainer>}></Route>
           
           <Route path="/bigFiveIntroArtist" element={<BigFiveIntroArtist></BigFiveIntroArtist>}></Route>
