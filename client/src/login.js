@@ -32,14 +32,15 @@ export default function Login({_AUTH_ENDPOINT, _CLIENT_ID, _REDIRECT_URI, _RESPO
 
       <Container sx={{minHeight: "100%"}} style={{backgroundColor: "white", paddingTop: 0, marginTop: '-16px'}} maxWidth="md">
        
-        <Typography variant="h3" sx={{mb: 2, pt: 4, fontWeight: 550}}>
-            Music Taste - Personality Survey
+        <Typography variant="h3" sx={{mb: 2, pt: 4, fontWeight: 550, fontSize: 35}}>
+            Musikgeschmack und Persönlichkeit
         </Typography>
         <Typography sx={{mb: 2, mt: 3, fontSize: 15}}>
           <ul>
           <li>Um an der folgenden Studie teilzunehmen benötigst du einen Spotify-Account<br></br></li>
-          <li>Du loggst dich mit diesem ein. Daten über dein Hörverhalten werden erhoben<br></br></li>
-          <li>Danach beantwortest du einige Fragen<br></br></li>
+          <li>Über diesen werden Daten über dein Musikhörverhalten erhoben<br></br></li>
+          <li>Zudem werden dir Fragen zu deiner Person und deinem Musikgeschmack gestellt<br></br></li>
+          <li>Dauer der Studie: ca. 15 Minuten<br></br></li>
           </ul>
         </Typography>
         <Typography sx={{mb: 2, mt: 2, fontSize: 18, fontWeight: 550}}>
@@ -47,7 +48,7 @@ export default function Login({_AUTH_ENDPOINT, _CLIENT_ID, _REDIRECT_URI, _RESPO
         </Typography>
         <Typography sx={{mb: 2, mt: 2, fontSize: 15}}>
           <ul>    
-            <li>Dann logge dich jetzt mit deinem Spotify-Account ein, beantworte die Umfrage und helfe uns somit weiter!</li>
+            <li>Dann logge dich jetzt mit deinem Spotify-Account ein und beginne mit der Studie!</li>
           </ul>
         </Typography>
         <Box

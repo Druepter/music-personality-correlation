@@ -9,7 +9,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import useMediaQuery from '@mui/material/useMediaQuery';
+import {styled} from "@mui/material/styles"
 
 //import { CSVLink, CSVDownload } from "react-csv";
 
@@ -24,22 +25,48 @@ export default function BigFiveArtistForm({statementValue}){
       statementValue(event.target.value);
     };
 
+    
+    const RadioGroupResponsive = styled("RadioGroup") (({ theme }) => ({
+      [theme.breakpoints.down("md")]: {
+        name: "radio-buttons-group",
+        color: "red"
+      }
+
+    }))
+
     return (
         <>
-          <FormControl sx={{ml: 5}}>
-            <RadioGroup
-              row
-              aria-labelledby="bigFive-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-              onChange={handleStatementSelection}
-            >
-              <FormControlLabel value="1" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft überhaupt nicht zu</Typography>} />
-              <FormControlLabel value="2" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft ehr zu</Typography>} />
-              <FormControlLabel value="3" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Weder noch</Typography>} />
-              <FormControlLabel value="4" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Ehr unzutreffend</Typography>} />
-              <FormControlLabel value="5" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft voll und ganz zu</Typography>} />
-            </RadioGroup>
-          </FormControl>
+          <Box display={{sm: 'block', xs: 'block', md: 'none', lg: 'none', xl: 'none'}}>
+            <FormControl sx={{ml: 5}}>
+              <RadioGroup
+                aria-labelledby="bigFive-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                onChange={handleStatementSelection}
+              >
+                <FormControlLabel value="1" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft überhaupt nicht zu</Typography>} />
+                <FormControlLabel value="2" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft eher nicht zu</Typography>} />
+                <FormControlLabel value="3" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Weder noch</Typography>} />
+                <FormControlLabel value="4" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft eher zu</Typography>} />
+                <FormControlLabel value="5" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft voll und ganz zu</Typography>} />
+              </RadioGroup>
+            </FormControl>
+          </Box>
+          <Box display={{xl: 'block', lg: 'block', md: 'block', sm: 'none', xs: 'none'}}>
+            <FormControl sx={{ml: 5}}>
+              <RadioGroup
+                row
+                aria-labelledby="bigFive-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                onChange={handleStatementSelection}
+              >
+                <FormControlLabel value="1" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft überhaupt nicht zu</Typography>} />
+                <FormControlLabel value="2" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft eher nicht zu</Typography>} />
+                <FormControlLabel value="3" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Weder noch</Typography>} />
+                <FormControlLabel value="4" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft eher zu</Typography>} />
+                <FormControlLabel value="5" control={<Radio sx={{'& .MuiSvgIcon-root': {fontSize: 13}}}/>} label={<Typography sx={{fontSize: '15px'}}>Trifft voll und ganz zu</Typography>} />
+              </RadioGroup>
+            </FormControl>
+          </Box>
         </>
     )
 }

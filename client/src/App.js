@@ -29,10 +29,15 @@ import PersonalData from "./PersonalData";
 import BigFiveIntro from "./BigFiveIntro";
 import BigFiveIntroArtist from "./BigFiveIntroArtist";
 import NameOfArtist from "./NameOfArtist";
+import NameOfArtists from "./NameOfArtists";
 import Outro from "./Outro";
 import GoldMSIntro from "./GoldMSIIntro";
 import StatementContainerGoldMSI from "./StatementContainerGoldMSI";
 import ConscientiousnessArtist from "./ConscientiousnessArtist";
+import ExtraversionArtist from "./ExtraversionArtist";
+import NeuroticismArtist from "./NeuroticismArtist";
+import AgreeablenessArtist from "./AgreeablenessArtist";
+import OpennessArtist from "./OpennessArtist";
 
 function App() {
  
@@ -1103,11 +1108,60 @@ function App() {
 
 
   //Werte für die BigFive der drei Artists
+  //Gewissenhaftigkeit
   const [conscientiousnessArtistOne, setConscientiousnessArtistOne] = useState()
   const [conscientiousnessArtistTwo, setConscientiousnessArtistTwo] = useState()
   const [conscientiousnessArtistThree, setConscientiousnessArtistThree] = useState()
 
-  
+  //Extraversion
+  const [extraversionArtistOne, setExtraversionArtistOne] = useState()
+  const [extraversionArtistTwo, setExtraversionArtistTwo] = useState()
+  const [extraversionArtistThree, setExtraversionArtistThree] = useState()
+
+  //Neurotizismus
+  const [neuroticismArtistOne, setNeuroticismArtistOne] = useState()
+  const [neuroticismArtistTwo, setNeuroticismArtistTwo] = useState()
+  const [neuroticismArtistThree, setNeuroticismArtistThree] = useState()
+
+  //Verträglichkeit
+  const [aggreablenessArtistOne, setAggreablenessArtistOne] = useState()
+  const [aggreablenessArtistTwo, setAggreablenessArtistTwo] = useState()
+  const [aggreablenessArtistThree, setAggreablenessArtistThree] = useState()
+
+  //Offenheit
+  const [opennessArtistOne, setOpennessArtistOne] = useState()
+  const [opennessArtistTwo, setOpennessArtistTwo] = useState()
+  const [opennessArtistThree, setOpennessArtistThree] = useState()
+
+
+  var artistNameOneVar = "Hallo12345";
+
+
+  const bigFiveArtistToMap = (setArtistMap, conscientiousness, extraversion, neuroticism, agreeableness, openness) => {
+
+    const bigFiveArtistMap = new Map();
+
+    bigFiveArtistMap.set('extraversion', extraversion)
+    bigFiveArtistMap.set('neurotizismus', neuroticism)
+    bigFiveArtistMap.set('offenheit', openness)
+    bigFiveArtistMap.set('gewissenhaftigkeit', conscientiousness)
+    bigFiveArtistMap.set('vertraeglichkeit', agreeableness)
+
+    setArtistMap(bigFiveArtistMap);
+
+  }
+
+
+  useEffect(() => {
+    
+    console.log(neuroticismArtistOne);
+    console.log(neuroticismArtistTwo);
+    console.log(neuroticismArtistThree);
+
+  }, [neuroticismArtistOne, neuroticismArtistTwo, neuroticismArtistThree])
+
+
+
   const [surveyDone, setSurveyDone] = useState(false);
 
   const [userID, setUserID] = useState();
@@ -1309,16 +1363,19 @@ function App() {
           <Route path="/bigFiveIntro" element={<BigFiveIntro></BigFiveIntro>}></Route>
 
 
-
-          <Route path="/conscientiousnessArtistOne" element={<ConscientiousnessArtist artistNameOne={artistNameOne} artistNameTwo={artistNameTwo} artistNameThree={artistNameThree} _setConscientiousnessArtistOne={setConscientiousnessArtistOne} _setConscientiousnessArtistTwo={setConscientiousnessArtistTwo} _setConscientiousnessArtistThree={setConscientiousnessArtistThree}></ConscientiousnessArtist>}></Route>
-      
-
-
-
-          <Route path="/bigFiveUser" element={<StatementContainer setBigFiveData={setBigFiveUserData} linkToContinue={"/bigFiveIntroArtist"}></StatementContainer>}></Route>
-          
+          <Route path="/nameOfArtists" element={<NameOfArtists setArtistNameOne={setArtistNameOne} setArtistNameTwo={setArtistNameTwo} setArtistNameThree={setArtistNameThree} linkToContinue={"/bigFiveIntroArtist"}></NameOfArtists>}></Route>
           <Route path="/bigFiveIntroArtist" element={<BigFiveIntroArtist></BigFiveIntroArtist>}></Route>
-          <Route path="/nameOfArtistOne" element={<NameOfArtist setArtistName={setArtistNameOne} linkToContinue={"/bigFiveArtistOne"} count={1}></NameOfArtist>}></Route>
+          
+          <Route path="/conscientiousnessArtist" element={<ConscientiousnessArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _conscientiousnessArtistOne={setConscientiousnessArtistOne} _conscientiousnessArtistTwo={setConscientiousnessArtistTwo} _conscientiousnessArtistThree={setConscientiousnessArtistThree} linkToContinue={"/extraversionArtist"}></ConscientiousnessArtist>}></Route>
+          <Route path="/extraversionArtist" element={<ExtraversionArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _extraversionArtistOne={setExtraversionArtistOne} _extraversionArtistTwo={setExtraversionArtistTwo} _extraversionArtistThree={setExtraversionArtistThree} linkToContinue={"/neuroticismArtist"}></ExtraversionArtist>}></Route>
+          <Route path="/neuroticismArtist" element={<NeuroticismArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _neuroticismArtistOne={setNeuroticismArtistOne} _neuroticismArtistTwo={setNeuroticismArtistTwo} _neuroticismArtistThree={setNeuroticismArtistThree} linkToContinue={"/agreeablenessArtist"}></NeuroticismArtist>}></Route>        
+          <Route path="/agreeablenessArtist" element={<AgreeablenessArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _agreeablenessArtistOne={setAggreablenessArtistOne} _agreeablenessArtistTwo={setAggreablenessArtistTwo} _agreeablenessArtistThree={setAggreablenessArtistThree} linkToContinue={"/opennessArtist"}></AgreeablenessArtist>}></Route>        
+          <Route path="/opennessArtist" element={<OpennessArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _opennessArtistOne={setOpennessArtistOne} _opennessArtistTwo={setOpennessArtistTwo} _opennessArtistThree={setOpennessArtistThree} linkToContinue={"/outro"}></OpennessArtist>}></Route>
+
+          <Route path="/bigFiveUser" element={<StatementContainer setBigFiveData={setBigFiveUserData} linkToContinue={"/nameOfArtists"}></StatementContainer>}></Route>
+          
+          
+          <Route path="/nameOfArtistOne" element={<NameOfArtist setArtistName={setArtistNameOne} linkToContinue={"/conscientiousnessArtistOne"} count={1}></NameOfArtist>}></Route>
           <Route path="/bigFiveArtistOne" element={<StatementContainer setBigFiveData={setBigFiveArtistOne} linkToContinue={"/nameOfArtistTwo"}></StatementContainer>}></Route>
           
           <Route path="/nameOfArtistTwo" element={<NameOfArtist setArtistName={setArtistNameTwo} linkToContinue={"/bigFiveArtistTwo"} count={2}></NameOfArtist>}></Route>

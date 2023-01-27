@@ -33,7 +33,7 @@ export default function Statement({description, number, increaseStatementNumber,
               alignItems="center"
               sx = {{paddingTop: 2, paddingBottom: 2}}
             >
-                <Button onClick={() => handleOnClick(2)} variant="contained" size="large">Trifft ehr nicht zu</Button>
+                <Button onClick={() => handleOnClick(2)} variant="contained" size="large">Trifft eher nicht zu</Button>
             </Box>
             <Box
               display="flex"
@@ -49,7 +49,7 @@ export default function Statement({description, number, increaseStatementNumber,
               alignItems="center"
               sx = {{paddingTop: 2, paddingBottom: 2}}
             >
-                <Button onClick={() => handleOnClick(4)} variant="contained" size="large">Ehr zutreffend</Button>
+                <Button onClick={() => handleOnClick(4)} variant="contained" size="large">Trifft eher zu</Button>
             </Box>
             <Box
               display="flex"

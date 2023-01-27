@@ -101,17 +101,17 @@ export default function PersonalData({personalData, getFavoriteTracksAudioFeatur
           */}
           {readyToRender ?
                       <>
-                      <Container sx={{boxShadow: 1, mb: 50}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+                      <Container sx={{boxShadow: 1, mb: 50}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
                         <Typography sx={{mb: 3, mt: 3}}>
                             Zunächst benötigen wir folgende Informationen zu deiner Person:
                         </Typography>
 
-                        <Typography sx={{mb: 1, fontWeight: 'bold'}}>
+                        <Typography sx={{mb: 1}}>
                             Alter:
                         </Typography>
                         <TextField required id="outlined-basic" variant="outlined" onChange={handleAgeChange} sx={{mb: 3}}/>
 
-                        <Typography sx={{mb: 1, fontWeight: 'bold'}}>
+                        <Typography sx={{mb: 1}}>
                             Geschlecht:
                         </Typography>
 

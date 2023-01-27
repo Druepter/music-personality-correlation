@@ -65,7 +65,7 @@ export default function MyAppBar({props, logout, path}) {
             
 
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Music Taste - Personality Survey
+              Musikgeschmack und Persönlichkeit
             </Typography>
             <Button onClick={logout} color="inherit">LOGOUT</Button>
           </Toolbar>

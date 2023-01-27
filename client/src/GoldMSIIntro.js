@@ -19,9 +19,9 @@ export default function GoldMSIntro(){
 
     return (
         <>
-          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
             <Typography sx={{mb: 3, mt: 3}}>
-                Im nun folgenden werden wir dir 5 Fragen zu deiner musikalsichen Vorerfahrung stellen. Beantworte die Fragen möglichst realtiätsgetreu.
+                Im nun folgenden werden dir fünf Fragen zu deiner musikalischen Vorerfahrung gestellt. Beantworte die Fragen möglichst wirklichkeitsnah.
             </Typography>
 
             <Box

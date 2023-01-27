@@ -10,12 +10,16 @@ import { Link as RouterLink } from 'react-router-dom';
 export default function StatementContainerGoldMSI({setGoldMSIScore, linkToContinue}){
 
     //Map, welche alle Statements in Textform und als Nummer beinhaltet
+    //Hier wurde der Gold_MSI Short Scale mit 5 Fragen verwendet
+    //https://shiny.gold-msi.org/gmsiconfigurator/ Alle Kategorien wurden ausgelassen
+    //außer General Music Sophistication
     const statementMap = new Map();
-    statementMap.set(1, 'Ich beschäftige mich in meiner Freizeit viel mit musikbezogenen Aktivitäten.')
-    statementMap.set(2, 'Ich kann beurteilen, ob jemand falsch oder richtig singt oder spielt.')
-    statementMap.set(3, 'Ich habe regelmäßig und täglich ein Instrument (einschließlich Gesang) für ... Jahre geübt.')
+    statementMap.set(1, 'Ich bin noch nie für meine musikalischen Fähigkeiten gelobt worden.')
+    statementMap.set(2, 'Wenn jemand anders ein Lied singt, welches ich nicht kenne, kann ich normalerweise mitsingen.')
+    statementMap.set(3, 'Ich kann auswendig singen oder Musik spielen.')
     statementMap.set(4, 'Ich bin in der Lage, die richtigen Töne zu treffen, wenn ich zu einer Aufnahme mitsinge.')
-    statementMap.set(5, 'Musik kann bei mir Erinnerungen an Personen und Orte hervorrufen.')
+    statementMap.set(5, 'Wenn jemand anders ein Lied singt, das ich kenne, kann ich eine zweite Stimme dazu singen.')
+    
 
 
 
@@ -123,7 +127,7 @@ export default function StatementContainerGoldMSI({setGoldMSIScore, linkToContin
 
     return (
         <>
-          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
             {allStatementsDone == false ?
               <Statement description={statementDescription} number={statementNumber} increaseStatementNumber={increaseStatementNumber} addEntryToStatementSelectionMap={addEntryToStatementSelectionMap}></Statement>
             :

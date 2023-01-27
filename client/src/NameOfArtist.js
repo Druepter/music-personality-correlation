@@ -57,8 +57,17 @@ export default function NameOfArtist({setArtistName, linkToContinue, count}){
             <Typography sx={{mb: 1, mt: 4}}>
               Name deines {counter} Lieblingsartist:
             </Typography>
-              <TextField required id="outlined-basic" variant="outlined" onChange={handleArtistNameChange} sx={{mb: 3}}/>
+            <TextField required id="outlined-basic" variant="outlined" onChange={handleArtistNameChange} sx={{mb: 3}}/>
 
+            <Typography sx={{mb: 1, mt: 4}}>
+              Name deines {counter} Lieblingsartist:
+            </Typography>
+            <TextField required id="outlined-basic" variant="outlined" onChange={handleArtistNameChange} sx={{mb: 3}}/>              
+
+            <Typography sx={{mb: 1, mt: 4}}>
+              Name deines {counter} Lieblingsartist:
+            </Typography>
+            <TextField required id="outlined-basic" variant="outlined" onChange={handleArtistNameChange} sx={{mb: 3}}/>
 
             <Box
               display="flex"

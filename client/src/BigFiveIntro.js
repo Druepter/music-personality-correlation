@@ -19,9 +19,9 @@ export default function BigFiveIntro(){
 
     return (
         <>
-          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
             <Typography sx={{mb: 3, mt: 3}}>
-                Im nun folgenden wirst du 10 Fragen zu deiner Perönlickeit beantworten. Schätze dich möglich gut selbst ein.
+                Im nun folgenden werden dir zehn Fragen zu deiner Persönlichkeit gestellt. Beantworte die Fragen möglichst wirklichkeitsnah.
             </Typography>
 
             <Box

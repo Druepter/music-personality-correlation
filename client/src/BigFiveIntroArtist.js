@@ -19,10 +19,11 @@ export default function BigFiveIntroArtist(){
 
     return (
         <>
-          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
             <Typography sx={{mb: 3, mt: 3}}>
-                Im nun folgenden wirst du 10 Fragen zur Perönlickeit deiner drei Lieblingsartists beantworten.
-                Falls dein Lieblingsartist eine Band oder Kollektiv ist dann nehme die dir wichtigste Person.
+                Im nun folgenden werden dir jeweils zehn Fragen dazu gestellt, wie du die Persönlichkeit deiner drei Lieblingskünstler
+                wahrnimmst. Wenn sich eine Band in deinen Lieblingskünstlern befindet beantworte die Fragen für die Band als Kollektiv oder
+                für das dir persönlich wichtigste Mitglied der Band. 
             </Typography>
 
             <Box
@@ -31,7 +32,7 @@ export default function BigFiveIntroArtist(){
               alignItems="center"
               sx = {{paddingTop: 4, paddingBottom: 5}}
             >
-              <Button component={RouterLink} to={"/nameOfArtistOne"} variant="contained" size="large">Beginnen</Button>
+              <Button component={RouterLink} to={"/conscientiousnessArtist"} variant="contained" size="large">Beginnen</Button>
             </Box>
           </Container>
         </>
