@@ -232,7 +232,7 @@ function App() {
       getTracksWithHighEnergy()
       getTracksWithLowEnergy()
 
-      sendDataToBackend()
+      //sendDataToBackend()
 
       //console.log("jo")
       //console.log(process)
@@ -1096,6 +1096,8 @@ function App() {
 
 
 
+  var userID;
+
   const [goldMSIScore, setGoldMSIScore] = useState()
   const [bigFiveUserData, setBigFiveUserData] = useState(new Map())
   const [bigFiveArtistOne, setBigFiveArtistOne] = useState(new Map())
@@ -1134,10 +1136,10 @@ function App() {
   const [opennessArtistThree, setOpennessArtistThree] = useState()
 
 
-  var artistNameOneVar = "Hallo12345";
 
 
-  const bigFiveArtistToMap = (setArtistMap, conscientiousness, extraversion, neuroticism, agreeableness, openness) => {
+
+  const bigFiveArtistToMap = (conscientiousness, extraversion, neuroticism, agreeableness, openness) => {
 
     const bigFiveArtistMap = new Map();
 
@@ -1147,24 +1149,20 @@ function App() {
     bigFiveArtistMap.set('gewissenhaftigkeit', conscientiousness)
     bigFiveArtistMap.set('vertraeglichkeit', agreeableness)
 
-    setArtistMap(bigFiveArtistMap);
+    return bigFiveArtistMap
 
   }
 
 
   useEffect(() => {
     
-    console.log(neuroticismArtistOne);
-    console.log(neuroticismArtistTwo);
-    console.log(neuroticismArtistThree);
+    console.log(bigFiveArtistOne);
 
-  }, [neuroticismArtistOne, neuroticismArtistTwo, neuroticismArtistThree])
+  }, [bigFiveArtistOne])
 
 
 
   const [surveyDone, setSurveyDone] = useState(false);
-
-  const [userID, setUserID] = useState();
 
   /*const generateRandomUserID = () => {
     return Math.floor(Math.random() * (max - min) + min)
@@ -1175,20 +1173,7 @@ function App() {
   }
 
 
-  //Sendet Perönliche Daten ans Backend
-  const sendPersonalData = () => {
 
-    axios.post("http://localhost:3001/insertPersonalData", {
-      age: personalData.get("age"),
-      gender: personalData.get("gender")
-    }).then(function (response){
-      
-    })
-    .catch(function (error){
-      console.log(error)
-    })
-
-  }
 
   //Sendet GoldMsiScore ans Backend
   const sendGoldMSIScoreData = () => {
@@ -1213,17 +1198,35 @@ function App() {
 
   }
 
-  //Sendet Big Five Daten des Users
-  const sendBigFiveUserData = () => {
+
+
+  //Persistiere Perönliche Daten des Users
+  const persistPersonalData = () => {
+
+    axios.post("http://localhost:3001/insertPersonalData", {
+      userID: userID,
+      age: personalData.get("age"),
+      gender: personalData.get("gender"),
+      goldMSI: goldMSIScore
+    }).then(function (response){
+      
+    })
+    .catch(function (error){
+      console.log(error)
+    })
+
+  }
+
+  //Persistiere Big Five Daten des Users
+  const persistBigFiveUserData = () => {
 
    axios.post("http://localhost:3001/insertBigFiveUserData", {
+     userID: userID,
      extraversion: bigFiveUserData.get("extraversion"),
      neurotizismus: bigFiveUserData.get("neurotizismus"),
      offenheit: bigFiveUserData.get("offenheit"),
      gewissenhaftigkeit: bigFiveUserData.get("gewissenhaftigkeit"),
      vertraeglichkeit: bigFiveUserData.get("vertraeglichkeit"),
-     valenz: getAverageValence(audioFeaturesLongTerm),
-     arousal: getAverageArousal(audioFeaturesLongTerm)
    }).then(function (response){
      
    })
@@ -1233,55 +1236,17 @@ function App() {
 
  }
 
- //Sendet Big Five des ersten Artist und Namen des Artist
- const sendBigFiveArtistOneData = () => {
+ //Speichert die BigFive Daten eines Artists
+ const persistBigFiveArtistData = (bigFiveArtistMap, artistName, link) => {
 
-  axios.post("http://localhost:3001/insertBigFiveArtistOneData", {
-    extraversion: bigFiveArtistOne.get("extraversion"),
-    neurotizismus: bigFiveArtistOne.get("neurotizismus"),
-    offenheit: bigFiveArtistOne.get("offenheit"),
-    gewissenhaftigkeit: bigFiveArtistOne.get("gewissenhaftigkeit"),
-    vertraeglichkeit: bigFiveArtistOne.get("vertraeglichkeit"),
-    artist: artistNameOne
-  }).then(function (response){
-    
-  })
-  .catch(function (error){
-    console.log(error)
-  })
-
-}
-
- //Sendet Big Five des zweiten Artist und Namen des Artist
- const sendBigFiveArtistTwoData = () => {
-
-  axios.post("http://localhost:3001/insertBigFiveArtistTwoData", {
-    extraversion: bigFiveArtistTwo.get("extraversion"),
-    neurotizismus: bigFiveArtistTwo.get("neurotizismus"),
-    offenheit: bigFiveArtistTwo.get("offenheit"),
-    gewissenhaftigkeit: bigFiveArtistTwo.get("gewissenhaftigkeit"),
-    vertraeglichkeit: bigFiveArtistTwo.get("vertraeglichkeit"),
-    artist: artistNameTwo
-  }).then(function (response){
-    
-  })
-  .catch(function (error){
-    console.log(error)
-  })
-
-}
-
-
- //Sendet Big Five des dritten Artist und Namen des Artist
- const sendBigFiveArtistThreeData = () => {
-
-  axios.post("http://localhost:3001/insertBigFiveArtistThreeData", {
-    extraversion: bigFiveArtistThree.get("extraversion"),
-    neurotizismus: bigFiveArtistThree.get("neurotizismus"),
-    offenheit: bigFiveArtistThree.get("offenheit"),
-    gewissenhaftigkeit: bigFiveArtistThree.get("gewissenhaftigkeit"),
-    vertraeglichkeit: bigFiveArtistThree.get("vertraeglichkeit"),
-    artist: artistNameThree
+  axios.post("http://localhost:3001/" + link, {
+    userID: userID,
+    artist: artistName,
+    extraversion: bigFiveArtistMap.get("extraversion"),
+    neurotizismus: bigFiveArtistMap.get("neurotizismus"),
+    offenheit: bigFiveArtistMap.get("offenheit"),
+    gewissenhaftigkeit: bigFiveArtistMap.get("gewissenhaftigkeit"),
+    vertraeglichkeit: bigFiveArtistMap.get("vertraeglichkeit")
   }).then(function (response){
     
   })
@@ -1293,38 +1258,63 @@ function App() {
 
 
 
+useEffect(() => {
+  //Prüfen ob alle Fragen der Umfrage beantwortet sind
+  if(surveyDone == true){
+  
+    //Maps für die BigFive der Artists
+    var bigFiveArtistOneMap = new Map();
+    var bigFiveArtistTwoMap = new Map();
+    var bigFiveArtistThreeMap = new Map();
 
-  useEffect(() => {
-    //Prüfen ob alle Fragen der Umfrage beantwortet sind
-    if(surveyDone == true){
-      //Wenn ja sende alle Daten ans Backend
+    //Wenn ja dann baue jeweils Maps aus den BigFive der Artists zusammen
+    bigFiveArtistOneMap = bigFiveArtistToMap(conscientiousnessArtistOne, extraversionArtistOne, neuroticismArtistOne, aggreablenessArtistOne, opennessArtistOne);
+    bigFiveArtistTwoMap = bigFiveArtistToMap(conscientiousnessArtistTwo, extraversionArtistTwo, neuroticismArtistTwo, aggreablenessArtistTwo, opennessArtistTwo);
+    bigFiveArtistThreeMap = bigFiveArtistToMap(conscientiousnessArtistThree, extraversionArtistThree, neuroticismArtistThree, aggreablenessArtistThree, opennessArtistThree);
 
-      //Keriere dazu zuerst eine random UserID
-      //Sechsstellige Nummer
-      var userID = getRandomUserID(100000, 1000000)
+    //Um die Umfrage anoynm zu halten wird hier eine UserID generiert
+    //Keriere dazu zuerst eine random UserID
+    //Sechsstellige Nummer
+    userID = getRandomUserID(100000, 1000000)
 
-      console.log("UserID: " + userID)
 
-      sendValenceAndArousal()
-      sendPersonalData()
-      sendGoldMSIScoreData()
-      sendBigFiveUserData()
-      sendBigFiveArtistOneData()
-      sendBigFiveArtistTwoData()
-      sendBigFiveArtistThreeData()
-      console.log(personalData)
-      console.log(goldMSIScore)
-      console.log(bigFiveUserData)
-      console.log(artistNameOne)
-      console.log(bigFiveArtistOne)
-      console.log(artistNameTwo)
-      console.log(bigFiveArtistTwo)
-      console.log(artistNameThree)
-      console.log(bigFiveArtistThree)
-      
+    console.log("------------------ Daten werden jetzt eingefügt ----------------------")
 
-    }
-  }, [surveyDone])
+    //Persistiere die Persönlichen Daten des Users
+    persistPersonalData()
+
+    //Persistiere die BigFive Daten des Users
+    persistBigFiveUserData()
+
+    //Persistiere die BigFive Daten der Artists
+    persistBigFiveArtistData(bigFiveArtistOneMap, artistNameOne, "insertBigFiveArtistOneData")
+    persistBigFiveArtistData(bigFiveArtistTwoMap, artistNameTwo, "insertBigFiveArtistTwoData")
+    persistBigFiveArtistData(bigFiveArtistThreeMap, artistNameThree, "insertBigFiveArtistThreeData")
+
+    
+
+
+
+    /*sendValenceAndArousal()
+    sendPersonalData()
+    sendGoldMSIScoreData()
+    sendBigFiveUserData()
+    sendBigFiveArtistOneData()
+    sendBigFiveArtistTwoData()
+    sendBigFiveArtistThreeData()
+    console.log(personalData)
+    console.log(goldMSIScore)
+    console.log(bigFiveUserData)
+    console.log(artistNameOne)
+    console.log(bigFiveArtistOne)
+    console.log(artistNameTwo)
+    console.log(bigFiveArtistTwo)
+    console.log(artistNameThree)
+    console.log(bigFiveArtistThree)*/
+    
+
+  }
+}, [surveyDone])
 
 
 
@@ -1370,7 +1360,7 @@ function App() {
           <Route path="/extraversionArtist" element={<ExtraversionArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _extraversionArtistOne={setExtraversionArtistOne} _extraversionArtistTwo={setExtraversionArtistTwo} _extraversionArtistThree={setExtraversionArtistThree} linkToContinue={"/neuroticismArtist"}></ExtraversionArtist>}></Route>
           <Route path="/neuroticismArtist" element={<NeuroticismArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _neuroticismArtistOne={setNeuroticismArtistOne} _neuroticismArtistTwo={setNeuroticismArtistTwo} _neuroticismArtistThree={setNeuroticismArtistThree} linkToContinue={"/agreeablenessArtist"}></NeuroticismArtist>}></Route>        
           <Route path="/agreeablenessArtist" element={<AgreeablenessArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _agreeablenessArtistOne={setAggreablenessArtistOne} _agreeablenessArtistTwo={setAggreablenessArtistTwo} _agreeablenessArtistThree={setAggreablenessArtistThree} linkToContinue={"/opennessArtist"}></AgreeablenessArtist>}></Route>        
-          <Route path="/opennessArtist" element={<OpennessArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _opennessArtistOne={setOpennessArtistOne} _opennessArtistTwo={setOpennessArtistTwo} _opennessArtistThree={setOpennessArtistThree} linkToContinue={"/outro"}></OpennessArtist>}></Route>
+          <Route path="/opennessArtist" element={<OpennessArtist nameArtistOne={artistNameOne} nameArtistTwo={artistNameTwo} nameArtistThree={artistNameThree} _opennessArtistOne={setOpennessArtistOne} _opennessArtistTwo={setOpennessArtistTwo} _opennessArtistThree={setOpennessArtistThree} linkToContinue={"/outro"} setSurveyDone={setSurveyDone}></OpennessArtist>}></Route>
 
           <Route path="/bigFiveUser" element={<StatementContainer setBigFiveData={setBigFiveUserData} linkToContinue={"/nameOfArtists"}></StatementContainer>}></Route>
           
@@ -1384,7 +1374,7 @@ function App() {
           <Route path="/nameOfArtistThree" element={<NameOfArtist setArtistName={setArtistNameThree} linkToContinue={"/bigFiveArtistThree"} count={3}></NameOfArtist>}></Route>
           <Route path="/bigFiveArtistThree" element={<StatementContainer setBigFiveData={setBigFiveArtistThree} linkToContinue={"/outro"}></StatementContainer>}></Route>
           
-          <Route path="/outro" element={<Outro setSurveyDone={setSurveyDone}></Outro>}></Route>
+          <Route path="/outro" element={<Outro logout={logout}></Outro>}></Route>
           
           <Route path="/bigFive" element={<BigFive getFavoriteTracksAudioFeaturesShortTerm={getFavoriteTracksAudioFeaturesShortTerm} getFavoriteTracksAudioFeaturesMediumTerm={getFavoriteTracksAudioFeaturesMediumTerm} getFavoriteTracksAudioFeaturesLongTerm={getFavoriteTracksAudioFeaturesLongTerm} getCurrentUsersProfile={getCurrentUsersProfile} currentUsersProfile={currentUsersProfile} token={token} readyToRender={readyToRender} chartColors={chartColors} chartData={chartData} chartLabels={chartLabels} trackCategories={trackCategories} renderState={setRenderState} valenceState={valence}/>}></Route>   
         </Routes> 

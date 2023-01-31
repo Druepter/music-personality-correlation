@@ -53,7 +53,7 @@ export default function NameOfArtists({setArtistNameOne, setArtistNameTwo, setAr
 
     return (
         <>
-          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
 
 
             <Typography sx={{mb: 1, mt: 4}}>

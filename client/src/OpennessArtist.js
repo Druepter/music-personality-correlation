@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import { useNavigate } from 'react-router-dom';
 import BigFiveArtistForm from './BigFiveArtistForm';
+import Divider from '@mui/material/Divider';
 
 
 
@@ -15,7 +16,7 @@ import BigFiveArtistForm from './BigFiveArtistForm';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-export default function OpennessArtist({nameArtistOne, nameArtistTwo, nameArtistThree, _opennessArtistOne, _opennessArtistTwo, _opennessArtistThree, linkToContinue}){ 
+export default function OpennessArtist({nameArtistOne, nameArtistTwo, nameArtistThree, _opennessArtistOne, _opennessArtistTwo, _opennessArtistThree, setSurveyDone, linkToContinue}){ 
   
     const [ordinaryArtistOne, setOrdinaryArtistOne] = React.useState(); 
     const [simpleArtistOne, setSimpleArtistOne] = React.useState(); 
@@ -27,6 +28,10 @@ export default function OpennessArtist({nameArtistOne, nameArtistTwo, nameArtist
     const [simpleArtistThree, setSimpleArtistThree] = React.useState(); 
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [])
 
     const calculateOpenness = (ordinary, simple) => {
 
@@ -73,43 +78,54 @@ export default function OpennessArtist({nameArtistOne, nameArtistTwo, nameArtist
         _opennessArtistTwo(calculateOpenness(ordinaryArtistTwo, simpleArtistTwo))
         _opennessArtistThree(calculateOpenness(ordinaryArtistThree, simpleArtistThree))
 
+        setSurveyDone(true)
+
         //Navigiere weiter
         navigate(linkToContinue);
       }
       };
 
+
+     
+
     return (
         <>
-          <Container sx={{boxShadow: 1, mb: 50}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1, mb: 50}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
 
-            <Typography sx={{mb: 1, mt: 6}}>
+            <Typography sx={{mb: 1, mt: 6, fontSize: 16.5}}>
             	Ich nehme {nameArtistOne} als gewöhnlich, durchschnittlich war?.
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setOrdinaryArtistOne}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
             	Ich nehme {nameArtistOne} als einfach, simpel war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setSimpleArtistOne}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 6}}>
+            <Typography sx={{mb: 1, mt: 8, fontSize: 16.5}}>
               Ich nehme {nameArtistTwo} als gewöhnlich, durchschnittlich war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setOrdinaryArtistTwo}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
               Ich nehme {nameArtistTwo} als einfach, simpel war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setSimpleArtistTwo}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 6}}>
+            <Typography sx={{mb: 1, mt: 8, fontSize: 16.5}}>
               Ich nehme {nameArtistThree} als gewöhnlich, durchschnittlich war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setOrdinaryArtistThree}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
               Ich nehme {nameArtistThree} als einfach, simpel war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setSimpleArtistThree}></BigFiveArtistForm>
 
 

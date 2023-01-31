@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import { useNavigate } from 'react-router-dom';
 import BigFiveArtistForm from './BigFiveArtistForm';
+import Divider from '@mui/material/Divider';
 
 
 
@@ -81,36 +82,42 @@ export default function AgreeablenessArtist({nameArtistOne, nameArtistTwo, nameA
 
     return (
         <>
-          <Container sx={{boxShadow: 1, mb: 50}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1, mb: 50}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
 
-            <Typography sx={{mb: 1, mt: 6}}>
-            	Ich nehme {nameArtistOne} als aggressiv, angriffslustig war. 
+            <Typography sx={{mb: 1, mt: 6, fontSize: 16.5}}>
+            	Ich nehme {nameArtistOne} als aggressiv war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setAggressiveArtistOne}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
-            	Ich nehme {nameArtistOne} als mutig, entschlossen war. 
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
+            	Ich nehme {nameArtistOne} als gewagt war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setBoldArtistOne}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 6}}>
-              Ich nehme {nameArtistTwo} als aggressiv, angriffslustig war.
+            <Typography sx={{mb: 1, mt: 8, fontSize: 16.5}}>
+              Ich nehme {nameArtistTwo} als aggressiv war.
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setAggressiveArtistTwo}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
-              Ich nehme {nameArtistTwo} als mutig, entschlossen war. 
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
+              Ich nehme {nameArtistTwo} als gewagt war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setBoldArtistTwo}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 6}}>
-              Ich nehme {nameArtistThree} als aggressiv, angriffslustig war.
+            <Typography sx={{mb: 1, mt: 8, fontSize: 16.5}}>
+              Ich nehme {nameArtistThree} als aggressiv war.
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setAggressiveArtistThree}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
-              Ich nehme {nameArtistThree} als mutig, entschlossen war. 
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
+              Ich nehme {nameArtistThree} als gewagt war. 
             </Typography>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
             <BigFiveArtistForm statementValue={setBoldArtistThree}></BigFiveArtistForm>
 
 

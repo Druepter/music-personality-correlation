@@ -5,10 +5,10 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const db = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "asdf1234",
-    database: "spotify_data"
+    host: "db5011763130.hosting-data.io",
+    user: "dbu397355",
+    password: "Washburn12!!!",
+    database: "dbs9909973"
 })
 
 app.use(cors())
@@ -16,14 +16,16 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 
-app.get('/', (req, res) => {
+app.get('/huhu', (req, res) => {
 
-    const sqlInsert = "INSERT INTO users (username, valenz, arousal) VALUES ('testUser', 10, 10)"
+    console.log(db.getConnection());
+
+    /*const sqlInsert = "INSERT INTO users (username, valenz, arousal) VALUES ('testUser', 10, 10)"
     db.query(sqlInsert, (err, result) => {
         console.log(err)
         console.log(result)
         res.send(err)
-    })   
+    })   */
 })
 
 app.post("/createEntry", (req, res) => {
@@ -59,117 +61,102 @@ app.post("/insertValenceArousal", (req, res) => {
     res.send("huhu")
 }) 
 
+
+
+
+
 app.post("/insertPersonalData", (req, res) => {
 
+    const userID = req.body.userID
     const age = req.body.age
     const gender = req.body.gender
+    const goldMSI = req.body.goldMSI
 
-    const sqlInsert = "INSERT INTO personaldata (age, gender) VALUES (?, ?)"
-    db.query(sqlInsert, [age, gender], (err, result) => {
+    const sqlInsert = "INSERT INTO personal_data (userID, age, gender, goldMSI) VALUES (?, ?, ?, ?)"
+    db.query(sqlInsert, [userID, age, gender, goldMSI], (err, result) => {
         console.log(err)
         console.log(result)
     })    
 
-    console.log("Personal Data")
-    console.log("Alter " + req.body.age)
-    console.log("Geschlecht "+ req.body.gender)
-    res.send("huhu")
 })  
-
-app.post("/insertGoldMSIScorce", (req, res) => {
-    console.log("Gold MSI Score:" + req.body.goldMSIScore)
-
-}) 
 
 app.post("/insertBigFiveUserData", (req, res) => {
 
+    const userID = req.body.userID
     const extraversion = req.body.extraversion
     const neurotizismus = req.body.neurotizismus
     const offenheit = req.body.offenheit
     const gewissenhaftigkeit = req.body.gewissenhaftigkeit
     const vertraeglichkeit = req.body.vertraeglichkeit
-    const valenz = req.body.valenz
-    const arousal = req.body.arousal
 
 
-    console.log("Big Five User Data")
-    console.log("Extraversion " + extraversion)
-    console.log("Offenheit " + offenheit)
-    console.log("Neurotiziesmus " + neurotizismus)
-    
-    console.log("Gewissenhaftigkeit " + gewissenhaftigkeit)
-    console.log("Verträglichkeit " + vertraeglichkeit)
-    console.log("valenz " + valenz)
-    console.log("arousal " + arousal)
-
-
-
-    const sqlInsert = "INSERT INTO user_data (extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit, valenz, arousal) VALUES (?, ?, ?, ?, ?, ?, ?)"
-    db.query(sqlInsert, [extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit, valenz, arousal], (err, result) => {
+    const sqlInsert = "INSERT INTO big_five (userID, extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit) VALUES (?, ?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [userID, extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit], (err, result) => {
         console.log(err)
         console.log(result)
     })
-    res.send("huhu")
-
 
 })
 
 app.post("/insertBigFiveArtistOneData", (req, res) => {
     
+    const userID = req.body.userID
+    const artistName = req.body.artist
     const extraversion = req.body.extraversion
     const neurotizismus = req.body.neurotizismus
     const offenheit = req.body.offenheit
     const gewissenhaftigkeit = req.body.gewissenhaftigkeit
     const vertraeglichkeit = req.body.vertraeglichkeit
-    const name = req.body.artist
+    
 
-    console.log("Big Artist One Data")
-    console.log("Extraversion " + extraversion)
-    console.log("Neurotiziesmus " + neurotizismus)
-    console.log("Offenheit " + offenheit)
-    console.log("Gewissenhaftigkeit " + gewissenhaftigkeit)
-    console.log("Verträglichkeit " + vertraeglichkeit)
-    console.log("Name "+ name)
+    const sqlInsert = "INSERT INTO big_five_artist_one (userID, artistName, extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [userID, artistName, extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit], (err, result) => {
+        console.log(err)
+        console.log(result)
+    })
+
 
 }) 
 
 app.post("/insertBigFiveArtistTwoData", (req, res) => {
     
+    const userID = req.body.userID
+    const artistName = req.body.artist
     const extraversion = req.body.extraversion
     const neurotizismus = req.body.neurotizismus
     const offenheit = req.body.offenheit
     const gewissenhaftigkeit = req.body.gewissenhaftigkeit
     const vertraeglichkeit = req.body.vertraeglichkeit
-    const name = req.body.artist
+    
 
-    console.log("Big Artist Two Data")
-    console.log("Extraversion " + extraversion)
-    console.log("Neurotiziesmus " + neurotizismus)
-    console.log("Offenheit " + offenheit)
-    console.log("Gewissenhaftigkeit " + gewissenhaftigkeit)
-    console.log("Verträglichkeit " + vertraeglichkeit)
-    console.log("Name "+ name)
+    const sqlInsert = "INSERT INTO big_five_artist_two (userID, artistName, extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [userID, artistName, extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit], (err, result) => {
+        console.log(err)
+        console.log(result)
+    })
 
-}) 
+
+})
 
 app.post("/insertBigFiveArtistThreeData", (req, res) => {
     
+    const userID = req.body.userID
+    const artistName = req.body.artist
     const extraversion = req.body.extraversion
     const neurotizismus = req.body.neurotizismus
     const offenheit = req.body.offenheit
     const gewissenhaftigkeit = req.body.gewissenhaftigkeit
     const vertraeglichkeit = req.body.vertraeglichkeit
-    const name = req.body.artist
+    
 
-    console.log("Big Artist Three Data")
-    console.log("Extraversion " + extraversion)
-    console.log("Neurotiziesmus " + neurotizismus)
-    console.log("Offenheit " + offenheit)
-    console.log("Gewissenhaftigkeit " + gewissenhaftigkeit)
-    console.log("Verträglichkeit " + vertraeglichkeit)
-    console.log("Name "+ name)
+    const sqlInsert = "INSERT INTO big_five_artist_three (userID, artistName, extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [userID, artistName, extraversion, neurotizismus, offenheit, gewissenhaftigkeit, vertraeglichkeit], (err, result) => {
+        console.log(err)
+        console.log(result)
+    })
 
-}) 
+
+})
 
 
 

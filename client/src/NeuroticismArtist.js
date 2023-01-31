@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Box from "@mui/material/Box";
 import { useNavigate } from 'react-router-dom';
 import BigFiveArtistForm from './BigFiveArtistForm';
+import Divider from '@mui/material/Divider';
 
 
 
@@ -17,33 +18,24 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function NeuroticismArtist({nameArtistOne, nameArtistTwo, nameArtistThree, _neuroticismArtistOne, _neuroticismArtistTwo, _neuroticismArtistThree, linkToContinue}){
   
-    const [relaxedArtistOne, setRelaxedArtistOne] = React.useState(); 
-    const [insecureArtistOne, setInsecureArtistOne] = React.useState(); 
+    const [romanticArtistOne, setRomanticArtistOne] = React.useState(); 
+    const [sentimentalArtistOne, setSentimentalArtistOne] = React.useState(); 
 
-    const [relaxedArtistTwo, setRelaxedArtistTwo] = React.useState(); 
-    const [insecureArtistTwo, setInsecureArtistTwo] = React.useState(); 
+    const [romanticArtistTwo, setRomanticArtistTwo] = React.useState(); 
+    const [sentimentalArtistTwo, setSentimentalArtistTwo] = React.useState(); 
 
-    const [relaxedArtistThree, setRelaxedArtistThree] = React.useState(); 
-    const [insecureArtistThree, setInsecureArtistThree] = React.useState(); 
+    const [romanticArtistThree, setRomanticArtistThree] = React.useState(); 
+    const [sentimentalArtistThree, setSentimentalArtistThree] = React.useState(); 
 
     const navigate = useNavigate();
 
-    const calculateNeuroticism = (relaxed, insecure) => {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [])
 
-      if(relaxed == 1) {
-        relaxed = 5;
-      }
-      else if(relaxed == 2){
-        relaxed = 4;
-      }
-      else if(relaxed == 4){
-        relaxed = 2;
-      }
-      else if(relaxed == 5){
-        relaxed = 1;
-      }
+    const calculateNeuroticism = (romantic, sentimental) => {
 
-      var neuroticism = (parseInt(relaxed) + parseInt(insecure)) / 2;
+      var neuroticism = (parseInt(romantic) + parseInt(sentimental)) / 2;
       return neuroticism;
     };
 
@@ -51,13 +43,13 @@ export default function NeuroticismArtist({nameArtistOne, nameArtistTwo, nameArt
     const handleButtonOnClick = () => {
 
 
-      if(relaxedArtistOne == null || insecureArtistOne == null || relaxedArtistTwo == null || insecureArtistTwo == null || relaxedArtistThree == null || insecureArtistThree == null){
+      if(romanticArtistOne == null || sentimentalArtistOne == null || romanticArtistTwo == null || sentimentalArtistTwo == null || romanticArtistThree == null || sentimentalArtistThree == null){
         alert("Bitte beantworten Sie alle Fragen!");
       }
       else {
-        _neuroticismArtistOne(calculateNeuroticism(relaxedArtistOne, insecureArtistOne))
-        _neuroticismArtistTwo(calculateNeuroticism(relaxedArtistTwo, insecureArtistTwo))
-        _neuroticismArtistThree(calculateNeuroticism(relaxedArtistThree, insecureArtistThree))
+        _neuroticismArtistOne(calculateNeuroticism(romanticArtistOne, sentimentalArtistOne))
+        _neuroticismArtistTwo(calculateNeuroticism(romanticArtistTwo, sentimentalArtistTwo))
+        _neuroticismArtistThree(calculateNeuroticism(romanticArtistThree, sentimentalArtistThree))
 
         //Navigiere weiter
         navigate(linkToContinue);
@@ -66,37 +58,43 @@ export default function NeuroticismArtist({nameArtistOne, nameArtistTwo, nameArt
 
     return (
         <>
-          <Container sx={{boxShadow: 1, mb: 50}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1, mb: 50}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
 
-            <Typography sx={{mb: 1, mt: 6}}>
-              Ich denke {nameArtistOne} ist entspannt, lässt sich durch Stress nicht aus der Ruhe bringen.
+            <Typography sx={{mb: 1, mt: 6, fontSize: 16.5}}>
+              Ich nehme {nameArtistOne} als romantisch war.
             </Typography>
-            <BigFiveArtistForm statementValue={setRelaxedArtistOne}></BigFiveArtistForm>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
+            <BigFiveArtistForm statementValue={setRomanticArtistOne}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
-            	Ich denke {nameArtistOne} wird leicht nervös und unsicher. 
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
+            	Ich nehme {nameArtistOne} als sentimental war. 
             </Typography>
-            <BigFiveArtistForm statementValue={setInsecureArtistOne}></BigFiveArtistForm>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
+            <BigFiveArtistForm statementValue={setSentimentalArtistOne}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 6}}>
-              Ich denke {nameArtistTwo} ist entspannt, lässt sich durch Stress nicht aus der Ruhe bringen.
+            <Typography sx={{mb: 1, mt: 8, fontSize: 16.5}}>
+              Ich nehme {nameArtistTwo} als romantisch war.
             </Typography>
-            <BigFiveArtistForm statementValue={setRelaxedArtistTwo}></BigFiveArtistForm>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
+            <BigFiveArtistForm statementValue={setRomanticArtistTwo}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
-              Ich denke {nameArtistTwo} wird leicht nervös und unsicher. 
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
+              Ich nehme {nameArtistTwo} als sentimental war. 
             </Typography>
-            <BigFiveArtistForm statementValue={setInsecureArtistTwo}></BigFiveArtistForm>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
+            <BigFiveArtistForm statementValue={setSentimentalArtistTwo}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 6}}>
-              Ich denke {nameArtistThree} ist entspannt, lässt sich durch Stress nicht aus der Ruhe bringen.
+            <Typography sx={{mb: 1, mt: 8, fontSize: 16.5}}>
+              Ich nehme {nameArtistThree} als romantisch war.
             </Typography>
-            <BigFiveArtistForm statementValue={setRelaxedArtistThree}></BigFiveArtistForm>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
+            <BigFiveArtistForm statementValue={setRomanticArtistThree}></BigFiveArtistForm>
 
-            <Typography sx={{mb: 1, mt: 3}}>
-              Ich denke {nameArtistThree} wird leicht nervös und unsicher.
+            <Typography sx={{mb: 1, mt: 3, fontSize: 16.5}}>
+              Ich nehme {nameArtistThree} als sentimental war. 
             </Typography>
-            <BigFiveArtistForm statementValue={setInsecureArtistThree}></BigFiveArtistForm>
+            <Divider sx={{mb: 1, mt: 1, borderBottomWidth: 2}}/>
+            <BigFiveArtistForm statementValue={setSentimentalArtistThree}></BigFiveArtistForm>
 
 
             <Box

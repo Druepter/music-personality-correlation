@@ -14,16 +14,15 @@ import Box from "@mui/material/Box";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
-export default function Outro({setSurveyDone}){
+export default function Outro({logout}){
     
   useEffect(() => {
-    setSurveyDone(true)
     console.log("surveyDone geändert")
   }, [])
 
     return (
         <>
-          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6}} maxWidth="md">
+          <Container sx={{boxShadow: 1}} style={{backgroundColor: "white", paddingTop: 6, minHeight: '91vh', marginBottom: 0}} maxWidth="md">
             <Typography sx={{mb: 3, mt: 3}}>
                 Dankeschön! Damit sind alle Fragen beantwortet. Vielen Dank für das Teilnehmen an der Umfrage!
             </Typography>
@@ -34,7 +33,7 @@ export default function Outro({setSurveyDone}){
               alignItems="center"
               sx = {{paddingTop: 4, paddingBottom: 5}}
             >
-              <Button component={RouterLink} to={"/bigFiveUser"} variant="contained" size="large">Ausloggen</Button>
+              <Button onClick={logout} variant="contained" size="large">Ausloggen</Button>
             </Box>
           </Container>
         </>
